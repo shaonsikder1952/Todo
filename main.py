@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
 import sqlite3
 
@@ -27,7 +28,8 @@ def signup(user: User):
         cursor.execute("INSERT INTO users (username, password) VALUES (?, ?)",
                        (user.username, user.password))
         conn.commit()
-        return {"message": "Account created successfully!"}
+        # After successful signup, redirect to login page
+        return RedirectResponse(url="/login", status_code=303)
     except sqlite3.IntegrityError:
         raise HTTPException(status_code=400, detail="Username already exists!")
 
