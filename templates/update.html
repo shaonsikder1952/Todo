@@ -1,0 +1,209 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Task</title>
+    <style>
+        /* Background Image */
+        .bg {
+            background: url('/static/image/img.png') no-repeat center center fixed;
+            background-size: cover;
+            height: 100%;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -3;
+        }
+
+        .bg:before {
+            content: "";
+            width: 100%;
+            height: 100%;
+            background: #000;
+            position: fixed;
+            z-index: -1;
+            top: 0;
+            left: 0;
+            opacity: 0.4;
+        }
+
+        /* Animated star field */
+        .star-field {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            perspective: 600px;
+            z-index: -2;
+        }
+
+        .star-field .layer {
+            box-shadow: -411px -476px #cccccc, 777px -407px #d4d4d4, -387px -477px #fcfcfc, -91px -235px #d4d4d4;
+            animation: sf-fly-by-1 300s linear infinite;
+        }
+
+        @keyframes sf-fly-by-1 {
+            from { transform: translateZ(-600px); opacity: 0.5; }
+            to { transform: translateZ(0); opacity: 0.5; }
+        }
+
+        /* General Layout */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+            background: transparent;
+        }
+
+        .container {
+            position: relative;
+            background: rgba(60, 60, 60, 0.9); /* Premium dark gray with a touch of elegance */
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            max-width: 700px;
+            width: 100%;
+            z-index: 1;
+            backdrop-filter: blur(8px);
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+            font-size: 2.8em;
+            text-shadow: 2px 2px 7px rgba(0, 0, 0, 0.6);
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 2px solid #ddd;
+            color: #fff;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        th {
+            background: rgba(0, 0, 0, 0.7);
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        td {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        td:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        td a {
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            color: #fff;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .delete {
+            background-color: #dc3545;
+        }
+
+        .update {
+            background-color: #28a745;
+        }
+
+        td a:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        form {
+            margin-top: 20px;
+            display: flex;
+            gap: 12px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 14px;
+            font-size: 1.1em;
+            border-radius: 6px;
+            border: 2px solid #ccc;
+            outline: none;
+            background: rgba(255, 255, 255, 0.5);
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 12px rgba(0, 123, 255, 0.6);
+        }
+
+        input[type="submit"] {
+            background: #28a745; /* Green button */
+            color: white;
+            border: none;
+            padding: 14px 22px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            transform: scale(1.05);
+            background: #218838; /* Darker green */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg"></div>
+    <div class="star-field">
+        <div class="layer"></div>
+        <div class="layer"></div>
+        <div class="layer"></div>
+    </div>
+
+    <div class="container">
+        <h1>Update Task</h1>
+
+        <form action="/update/{{ task.id }}" method="POST">
+            <input type="text" name="content" id="content" value="{{ task.content }}">
+            <input type="submit" value="Update Task">
+        </form>
+    </div>
+
+</body>
+</html>
+{% endblock %}
