@@ -1,0 +1,7 @@
+[build]
+  command = "pip install -r requirements.txt && python manage.py collectstatic && gunicorn app:app"
+  publish = "static"
+
+[context.production.environment]
+  FLASK_APP = "app.py"
+  FLASK_ENV = "production"
