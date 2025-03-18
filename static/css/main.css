@@ -1,197 +1,75 @@
-/* General Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Background */
-.bg {
-    background: url('https://i.ibb.co/87GbbFP/2799006.jpg') no-repeat center center fixed;
-    background-size: cover;
-    height: 100%;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -3;
-}
-
-.bg:before {
-    content: "";
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    position: fixed;
-    z-index: -1;
-    top: 0;
-    left: 0;
-}
-
-/* Body and Container */
-body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    font-family: 'Arial', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background: transparent;
-    overflow: hidden;
-    position: relative;
-    color: black; /* Ensures all text is black by default */
-}
-
-.container {
-    position: relative;
-    background: rgba(20, 20, 20, 0.6); /* Darker semi-transparent background for depth */
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
-    max-width: 600px;
-    width: 100%;
-    z-index: 1;
-    backdrop-filter: blur(10px);
-    transform: translateZ(0);
-    transition: transform 0.5s ease;
-    border: 2px solid #4b5d67; /* Dark metallic border */
-}
-
-.container:hover {
-    transform: translateY(-10px);
-}
-
-/* Header */
-h1 {
-    text-align: center;
-    font-size: 2.5em;
-    color: black; /* Set header text color to black */
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
-    margin-bottom: 20px;
-    font-family: 'Arial', sans-serif;
-}
-
-/* Table */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    border-radius: 15px; /* Added rounded corners to the table */
-    overflow: hidden; /* Ensures the corners are clipped properly */
-}
-
-th, td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #555;
-    font-size: 1.1em;
-    color: black; /* Set table text color to black */
-    transition: all 0.3s ease;
-}
-
-/* Header Styling */
-th {
-    background: linear-gradient(135deg, #d1c6b1, #b2b09f); /* Lighter dark beige and gray mix */
-    color: #fff;
-    text-transform: uppercase;
-    font-weight: bold;
-    cursor: pointer;
-    border-right: 2px solid #444;
-    position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-td {
-    background: rgba(0, 0, 0, 0.6);
-}
-
-td:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    transform: translateY(-5px);
-}
-
-.actions {
-    display: flex;
-    gap: 10px;
-}
-
-/* Links (Buttons) */
+/* General Button Style */
 td a {
     text-decoration: none;
-    padding: 12px 20px;
-    border-radius: 50%; /* Circular buttons */
-    color: #fff; /* Ensure button text is white */
+    padding: 12px 20px; /* Same padding for both buttons */
+    border-radius: 8px;
+    color: #fff;
     font-weight: bold;
+    text-align: center;
+    border: 2px solid transparent;
+    display: inline-block;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-size: 1em; /* Ensure same font size */
+    box-sizing: border-box; /* Ensure padding doesn't affect size */
 }
 
 /* Specific button colors for Delete and Update */
 .delete {
-    background: linear-gradient(135deg, #ff4c4c, #f07b7b); /* Red for delete button */
+    padding: 5px 20px;  /* Add padding for size */
+    font-size: 16px;  /* Increase text size */
+    color: white;  /* Text color */
+    background-color: red;  /* Red button */
+    border: none;  /* Remove default border */
+    border-radius: 5px;  /* Rounded corners */
+    cursor: pointer;  /* Change cursor on hover */
+}
+
+.delete:hover {
+    background-color: darkred; /* Darker red on hover */
 }
 
 .update {
-    background: linear-gradient(135deg, #5dba42, #3b8a29); /* Green for update button */
+    background: linear-gradient(135deg, #5dba42, #3b8a29);
 }
 
-/* Button hover effect */
+.update:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+    border-color: #fff;
+    background: linear-gradient(135deg, #4c9f3e, #347d29);
+}
+
+/* Make sure both buttons have same size and padding */
+td a {
+    padding: 12px 20px;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    border: 2px solid transparent;
+    display: inline-block;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-size: 1em; /* Same font size */
+    box-sizing: border-box; /* Ensures consistent size */
+}
+
 td a:hover {
     transform: scale(1.1);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+    border-color: #fff;
 }
-
-/* Form Styles */
-form {
-    margin-top: 20px;
-    display: flex;
-    gap: 10px;
-}
-
-input[type="text"] {
-    flex: 1;
-    padding: 14px;
-    font-size: 1.1em;
-    border-radius: 8px;
-    border: 2px solid #ddd;
-    outline: none;
-    background: rgba(255, 255, 255, 0.3); /* Slightly transparent background */
-    color: black; /* Ensure text in input fields is black */
-    transition: background 0.3s ease, transform 0.3s ease;
-}
-
-input[type="text"]:focus {
-    background: rgba(255, 255, 255, 0.6); /* Slightly lighter on focus */
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.6); /* Cyan glow on focus */
-    transform: scale(1.05);
-}
-
-input[type="submit"] {
-    background: #3498db; /* Blue for submit button */
-    color: white;
-    border: none;
-    padding: 14px 25px;
-    border-radius: 30px;
+.btn {
+    display: inline-flex; /* Use flexbox for perfect alignment */
+    align-items: center;  /* Vertically center */
+    justify-content: center; /* Horizontally center */
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    text-align: center;
     cursor: pointer;
-    transition: transform 0.3s ease, background 0.3s ease;
+    text-decoration: none;
+    border: none;
+    height: 40px; /* Ensure same height for both buttons */
+    line-height: normal; /* Prevents text misalignment */
 }
 
-input[type="submit"]:hover {
-    transform: scale(1.05);
-    background: #2980b9; /* Darker blue on hover */
-}
-
-/* Scroll Bar Styling */
-::-webkit-scrollbar {
-    width: 12px;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.7);
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(0, 0, 0, 1);
-}
